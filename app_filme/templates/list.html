@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+</head>
+<body>
+    {% if usuarios %}
+        <h1>Lista de usuarios:</h1>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Email</th>
+                <th>Idade</th>
+                <th>Nascimento</th>
+                <th>Telefone</th>
+                <th>Opcoes</th>
+            </tr>
+
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.first_name }}</td>
+                    <td>{{ usuario.last_name }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.age }}</td>
+                    <td>{{ usuario.birth_date }}</td>
+                    <td>{{ usuario.phone }}</td>
+                    <td>
+                        <a href="{% url 'detalhe' usuario.id %}"><button>Detalhes</button></a>
+                        <a href="{% url 'atualizar' usuario.id %}"><button>Atualizar</button></a>
+                        <a href="{% url 'deletar' usuario.id %}"><button>Deletar</button></a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>Nao existem usuarios</h1>
+        <button><a href="{% url 'criar' %}">Criar usuario</a></button>
+        <button><a href="{% url 'home' %}">Voltar</a></button>
+    {% endif %}
+
+</body>
+</html>

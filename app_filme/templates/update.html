@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar</title>
+</head>
+<body>
+    <!-- Função basica para receber um form ja preenchido do usuario -->
+    <h1>Atualizar usuario:</h1>
+    <form action="{% url 'atualizar' usuario.id %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <br>
+            {{ field.label_tag }}
+            <br>
+            {{ field }}
+            <br>
+        {% endfor %}
+        <input type="submit" value="Atualizar">
+    </form>
+    <button><a href="{% url 'listar' %}">Voltar</a></button>
+</body>
+</html>
